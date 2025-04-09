@@ -32,12 +32,14 @@ def process_visit_csv(raw_df):
             return ""
 
     raw_df["Type"] = raw_df["Appointment Type"].apply(map_appt_type)
+    raw_df["📄 Claim"] = raw_df["Visit ID"].str.replace("VS", "CL")
 
     processed_df = raw_df[
         [
             "Visit ID",
             "Formatted_Date",
             "🤒 Patient",
+            "📄 Claim",
             "Status",
             "Type",
             "Actual Duration",
