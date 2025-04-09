@@ -7,7 +7,7 @@ from scripts.process_visit_csv import process_visit_csv
 def healthie_csv_formatter_page():
     st.header("Healthie CSV Formatter")
     st.write(
-        "Upload the Healthie CSV file for last week appointments."
+        "Upload the Healthie CSV file for last week's appointments."
         "This will format the data to easily import into the Notion Visits table."
     )
 
