@@ -16,10 +16,7 @@ def process_visit_csv(raw_df):
     raw_df["🤒 Patient"] = raw_df["Client Name"]
     raw_df["RD Provider"] = raw_df["Provider"]
 
-    # TODO @ashuaibi7: remove after Healthie/Notion name changes (Dr. AA --> AA)
     raw_df["RD Provider"] = [s.replace("Dr. ", "") for s in raw_df["RD Provider"]]
-    # TODO @ashuaibi7: remove after Healthie/Notion name changes (fia --> via)
-    raw_df["RD Provider"] = [s.replace("fia", "via") for s in raw_df["RD Provider"]]
 
     def map_appt_type(appt_type):
         if "Initial" in appt_type:
