@@ -30,6 +30,7 @@ def process_visit_csv(raw_df):
 
     raw_df["Type"] = raw_df["Appointment Type"].apply(map_appt_type)
     raw_df["📄 Claim"] = raw_df["Visit ID"].str.replace("VS", "CL")
+    raw_df["💰 Cash Payment"] = raw_df["Visit ID"].str.replace("VS", "PAY")
 
     processed_df = raw_df[
         [
@@ -41,6 +42,7 @@ def process_visit_csv(raw_df):
             "Type",
             "Actual Duration",
             "RD Provider",
+            "💰 Cash Payment",
         ]
     ]
     processed_df = processed_df.rename(
