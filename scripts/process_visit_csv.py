@@ -14,10 +14,9 @@ def process_visit_csv(raw_df):
     )
 
     raw_df["🤒 Patient"] = raw_df["Client Name"]
-    raw_df["RD Provider"] = raw_df["Provider"]
+    raw_df["Provider Name"] = raw_df["Provider"]
 
-    raw_df["RD Provider"] = [s.replace("Dr. ", "") for s in raw_df["RD Provider"]]
-    raw_df["Provider Name"] = raw_df["RD Provider"]
+    raw_df["Provider Name"] = [s.replace("Dr. ", "") for s in raw_df["Provider Name"]]
 
     def map_appt_type(appt_type):
         if "Initial" in appt_type:
@@ -43,7 +42,6 @@ def process_visit_csv(raw_df):
             "Type",
             "Actual Duration",
             "Provider Name",
-            "RD Provider",
             "💰 Cash Payment",
         ]
     ]
