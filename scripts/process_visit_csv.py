@@ -7,8 +7,8 @@ def process_visit_csv(raw_df):
     raw_df["Formatted_Date"] = raw_df["Date"].dt.strftime("%m-%d-%Y")
 
     raw_df["Visit ID"] = (
-        raw_df["Client Name"].str.split(" ").str[0].str[0]
-        + raw_df["Client Name"].str.split(" ").str[-1].str[0]
+        raw_df["Client Name"].str.split(" ").str[0].str[0:2]  # first name initial
+        + raw_df["Client Name"].str.split(" ").str[-1].str[0:2]  # last name initial
         + "_VS-"
         + raw_df["Formatted_Date"]
     )
@@ -31,6 +31,7 @@ def process_visit_csv(raw_df):
     raw_df["Type"] = raw_df["Appointment Type"].apply(map_appt_type)
     raw_df["📄 Claim"] = raw_df["Visit ID"].str.replace("VS", "CL")
     raw_df["💰 Cash Payment"] = raw_df["Visit ID"].str.replace("VS", "PAY")
+    raw_df["Chart Note 🔒"] = raw_df["Charting Note Locked"]
 
     processed_df = raw_df[
         [
@@ -43,6 +44,7 @@ def process_visit_csv(raw_df):
             "Actual Duration",
             "Provider Name",
             "💰 Cash Payment",
+            "Chart Note 🔒",
         ]
     ]
     processed_df = processed_df.rename(
